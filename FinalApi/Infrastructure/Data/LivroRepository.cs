@@ -23,9 +23,11 @@ namespace Infrastructure.Data
             return livros.SingleOrDefault(c => c.Id == id);
         }
 
-        public void Insert(Livro livro)
+        public int Insert(Livro livro)
         {
             livros.Add(livro);
+
+            return livro.Id;
         }
 
         public void Update(int id, Livro livro)
@@ -37,6 +39,5 @@ namespace Infrastructure.Data
                 livroInDb.ToLivro(livro);
             }
         }
-        
     }
 }

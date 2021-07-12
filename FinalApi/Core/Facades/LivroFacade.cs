@@ -13,13 +13,13 @@ namespace Core.Facades
             _service = service;
         }
 
-        public List<Livro> GetLivros() => 
+        public List<Livro> GetLivros() =>
             _service.GetLivros();
 
-        public Livro GetLivro(int id) => 
+        public Livro GetLivro(int id) =>
             _service.GetLivro(id);
 
-        public void Insert(Livro livro) =>
+        public int Insert(Livro livro) =>
             _service.Insert(livro);
 
         public void Update(int id, Livro livro) =>

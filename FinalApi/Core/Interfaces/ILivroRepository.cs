@@ -7,7 +7,7 @@ namespace Core.Interfaces
     {
          List<Livro> GetLivros();
          Livro GetLivro(int id);
-         void Insert(Livro livro);
+         int Insert(Livro livro);
          void Update(int id, Livro livro);
     }
 }

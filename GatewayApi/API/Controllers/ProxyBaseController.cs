@@ -1,6 +1,5 @@
 using System.Net.Http;
 using System.Net.Http.Json;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -13,7 +12,6 @@ namespace GatewayApi.Controllers
     [Route("api/proxy/[controller]")]
     public class ProxyBaseController : ControllerBase
     {
-        
         private readonly ILogger<ProxyBaseController> _logger;
         private readonly HttpClient _httpClient;
         private readonly IGatewayService _gatewayService;
@@ -39,21 +37,24 @@ namespace GatewayApi.Controllers
             return content;
         }
 
-        protected async Task<IActionResult> ProxyPostTo<T>(string action, T t)
+        protected async Task<string> ProxyPostTo<T>(string action, T t)
         {
             if (t == null)
-                return BadRequest();
+                return null;
 
             var httpContent = (await _httpClient.PostAsJsonAsync<T>(_url + action, t)).Content;
 
-            return Content(await httpContent.ReadAsStringAsync());
+            return await httpContent.ReadAsStringAsync();
         }
 
-        protected async Task<IActionResult> ProxyPutTo<T>(string action, T t)
+        protected async Task<string> ProxyPutTo<T>(string action, T t)
         {
+            if (t == null)
+                return null;
+                
             var httpContent = (await _httpClient.PutAsJsonAsync<T>(_url + action, t)).Content;
 
-            return Content(await httpContent.ReadAsStringAsync());
+            return await httpContent.ReadAsStringAsync();
         }
     }
 }

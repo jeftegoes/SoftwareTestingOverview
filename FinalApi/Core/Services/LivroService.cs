@@ -19,7 +19,7 @@ namespace Core.Services
         public Livro GetLivro(int id)
             => _repository.GetLivro(id);
 
-        public void Insert(Livro livro) 
+        public int Insert(Livro livro) 
             => _repository.Insert(livro);
 
         public void Update(int id, Livro livro) 

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Core.Entities;
+﻿using Core.Entities;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -38,9 +34,9 @@ namespace API.Controllers
         [HttpPost]
         public IActionResult Insert(Livro livro)
         {
-            _facade.Insert(livro);
+            var id = _facade.Insert(livro);
             
-            return Ok();
+            return Ok(id);
         }
 
         [HttpPut("{id}")]

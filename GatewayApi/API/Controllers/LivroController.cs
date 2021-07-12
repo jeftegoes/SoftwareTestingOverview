@@ -14,7 +14,7 @@ namespace GatewayApi.Controllers
         public LivroController(
             ILogger<LivroController> logger, 
             IHttpClientFactory httpClientFactory,
-            IGatewayService gatewayService) : base(logger, httpClientFactory, gatewayService)
+            IGatewayService gatewayService) : base(logger,httpClientFactory, gatewayService)
         {
             
         }
@@ -34,13 +34,15 @@ namespace GatewayApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Insert(Livro livro)
         {
-            return await base.ProxyPostTo<Livro>("Livro", livro);
+            var result = await base.ProxyPostTo<Livro>("Livro", livro);
+            
+            return Created($"~/Api/Proxy/Insert/{result}", result);
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, Livro livro)
         {
-            return await base.ProxyPutTo<Livro>($"Livro/{id}", livro);
+            return Ok(await base.ProxyPutTo<Livro>($"Livro/{id}", livro));
         }
     }
 }
