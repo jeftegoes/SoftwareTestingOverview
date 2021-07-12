@@ -1,3 +1,5 @@
+![ProjectApiGatewayWithoutOcelot](https://github.com/jeftegoesdev/ProjectApiGatewayWithoutOcelot/blob/master/Images/ProjectApiGatewayWithoutOcelot?raw=true)
+
 ## What is this projetct
 
 It is a small/simple example that implements API Gateway Pattern.
